@@ -1,0 +1,50 @@
+﻿<Page
+    x:Class="Player.View.Card.Card"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Player.View.Card"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.4*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="&#xE830;" MaxHeight="35" MaxWidth="35" Click="Back" x:Name="BackB" FontFamily="Segoe MDL2 Assets"/>
+                <Button Content="&#xE72A;" MaxHeight="35" MaxWidth="35" Click="Forward" x:Name="ForwardB" FontFamily="Segoe MDL2 Assets"/>
+                <Button Content="&#xE72C;" MaxHeight="35" MaxWidth="35" Click="Refresh" x:Name="RefreshB" FontFamily="Segoe MDL2 Assets"/>
+
+            </StackPanel>
+            <TextBox Grid.Column="1" MaxHeight="35" x:Name="UrlField" TextWrapping="NoWrap" x:FieldModifier="public"  KeyDown="GoTo"/>
+            <StackPanel Orientation="Horizontal" Grid.Column="2">
+                <Button Content="&#xE896;" MaxHeight="35" MaxWidth="35" Click="DownloadWindow" x:Name="DownloadB" FontFamily="Segoe MDL2 Assets"/>
+
+            </StackPanel>
+        </Grid>
+        <WebView  RightTapped="Context" UnviewableContentIdentified="Download" x:Name="Site" x:FieldModifier="public"  Grid.Row="1" ContentLoading="ChangeText" >
+            <WebView.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem x:Name="RefreshBC" Click="Refresh" Text="Refresh"/>
+                </MenuFlyout>
+            </WebView.ContextFlyout>
+        </WebView>
+        <Frame x:Name="RightPanel" Grid.Column="1" Grid.Row="1" Visibility="Collapsed"/>
+
+
+
+    </Grid>
+</Page>
