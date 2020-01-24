@@ -26,6 +26,7 @@ namespace Player.View.Card
     {
         string ActualURL;
         string ShowUrl;
+
         public Card()
         {
             this.InitializeComponent();
@@ -98,8 +99,8 @@ namespace Player.View.Card
         }
 
         private void Context(object sender, RightTappedRoutedEventArgs e)
-        {
-            Site.ContextFlyout.ShowAt(sender as FrameworkElement);
+        {                
+            ContextFlyout.ShowAt(Site,e.GetPosition(sender as UIElement));
             
         }
 
@@ -110,14 +111,26 @@ namespace Player.View.Card
         private void Download(WebView sender, WebViewUnviewableContentIdentifiedEventArgs args)
         {
 
-                new DownloadScript().Download(Site.Source);
+                new DownloadScript().Download(Site.Source,this);
             
         }
 
         private void DownloadWindow(object sender, RoutedEventArgs e)
         {
-            RightPanel.Navigate(typeof(DownloadList));
-            RightPanel.Visibility = Visibility.Visible;
+            if (RightPanel.Visibility == Visibility.Visible)
+            {
+                RightPanel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                RightPanel.Navigate(typeof(DownloadList));
+                RightPanel.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void LeftClick(object sender, TappedRoutedEventArgs e)
+        {
+            RightPanel.Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Player.View.Card;
+using Player.View.RightPanel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,9 +35,10 @@ namespace Player
             this.InitializeComponent();
             Cards.Navigate(typeof(Card));
         }
-       
+        
+
     }
 
- }
+}
     
 

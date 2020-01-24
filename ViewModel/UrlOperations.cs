@@ -8,7 +8,7 @@ namespace Player.View.Card
         {
             try
             {
-                if (Uinput.Substring(0, 8) != "https://" || Uinput.Length < 8)
+                if (Uinput.Substring(0, 8) != "https://" )
                 {
                     Uinput = "https://" + Uinput;
                     return Uinput;
@@ -32,7 +32,10 @@ namespace Player.View.Card
 
         internal string GetUrlToShow(string Uinput)
         {
+            if(Uinput.Substring(0, 8) == "https://")
             Uinput = Uinput.Substring(8);
+            else if(Uinput.Substring(0, 7) == "http://")
+                Uinput = Uinput.Substring(7);
             return Uinput;
         }
     }

@@ -5,15 +5,21 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 
 namespace Player
 {
     public class Download : INotifyPropertyChanged
     {
+        CoreDispatcher Dispatcher;
+        public Download(CoreDispatcher disp)
+        {
+            Dispatcher = disp;
+        }
         public static ObservableCollection<Download> DownloadList = new ObservableCollection<Download>();
         public Uri URL { get; set; }
         public string Filename { get; set; }
-        public ulong downloaded;
+         ulong downloaded;
         public ulong Downloaded
         {
             get
@@ -23,13 +29,25 @@ namespace Player
             set
             {
                 downloaded = value;
-                RaisePropertyChanged("Downloaded");
+                RaisePropertyChangedAsync("Downloaded");
             }
         }
-        public ulong FileSize { get; set; }
+         long fileSize;
+        public long FileSize
+        {
+            get
+            {
+                return fileSize;
+            }
+            set
+            {
+                fileSize = value;
+                RaisePropertyChangedAsync("FileSize");
+            }
+        }
         public int Unit { get; set; }
-        public ulong percentDownload;
-        public ulong PercentDownload
+         double percentDownload;
+        public double PercentDownload
         {
             get
             {
@@ -38,17 +56,20 @@ namespace Player
             set
             {
                 percentDownload = value;
-                RaisePropertyChanged("PercentDownload");
+                RaisePropertyChangedAsync("PercentDownload");
             }
         }
         public DateTime TimeToEnd { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void RaisePropertyChanged(string name)
+        protected async Task RaisePropertyChangedAsync(string name)
         {
             if (PropertyChanged != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+                await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs(name));
+                });
             }
         }
     }

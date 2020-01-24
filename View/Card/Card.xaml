@@ -15,7 +15,8 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="0.3*"/>
+            
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
@@ -35,15 +36,17 @@
 
             </StackPanel>
         </Grid>
-        <WebView  RightTapped="Context" UnviewableContentIdentified="Download" x:Name="Site" x:FieldModifier="public"  Grid.Row="1" ContentLoading="ChangeText" >
-            <WebView.ContextFlyout>
-                <MenuFlyout>
+        <WebView Grid.ColumnSpan="2" Tapped="LeftClick" RightTapped="Context" UnviewableContentIdentified="Download" x:Name="Site" x:FieldModifier="public"  Grid.Row="1" ContentLoading="ChangeText" >
+           
+            <FlyoutBase.AttachedFlyout>
+                <MenuFlyout x:Name="ContextFlyout">
                     <MenuFlyoutItem x:Name="RefreshBC" Click="Refresh" Text="Refresh"/>
                 </MenuFlyout>
-            </WebView.ContextFlyout>
+            </FlyoutBase.AttachedFlyout>
         </WebView>
-        <Frame x:Name="RightPanel" Grid.Column="1" Grid.Row="1" Visibility="Collapsed"/>
-
+        <Frame x:Name="RightPanel" Visibility="Collapsed" Grid.Row="1" Grid.Column="1"/>
+        
+        
 
 
     </Grid>

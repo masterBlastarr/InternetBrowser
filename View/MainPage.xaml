@@ -9,7 +9,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Frame x:Name="Cards"/>
-
+       
+            <Frame x:Name="Cards"/>
+       
     </Grid>
 </Page>

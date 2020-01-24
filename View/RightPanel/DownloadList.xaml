@@ -13,12 +13,17 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding FileName}"/>
+                        
+                        <TextBlock Text="{Binding Filename}"/>
                         <ProgressBar Height="10" Value="{Binding PercentDownload, UpdateSourceTrigger=PropertyChanged}" Maximum="100"/>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding Downloaded, UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock Text="/"/>
-                            <TextBlock Text="{Binding FileSize}"/>
+                            <TextBlock Text="{Binding FileSize, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding PercentDownload, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Text="%"/>
                         </StackPanel>
                     </StackPanel>
                     
